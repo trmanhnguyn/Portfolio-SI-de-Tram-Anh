@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TD2: Processus Organisationnel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styles spécifiques pour TD2 */
+        .preview-container {
+            margin: var(--spacing-md) 0;
+            text-align: center;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+            cursor: pointer;
+            border-radius: var(--radius-md);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+        }
+
+        .preview-image:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-md);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 70vh;
+            border-radius: var(--radius-md);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--text-light);
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color var(--transition-base);
+        }
+
+        .modal-close:hover {
+            color: var(--text-tertiary);
+        }
+
+        .error-message {
+            color: var(--primary-dark);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            margin-top: var(--spacing-sm);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-gradient">Portfolio</span> SI
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html#accueil" class="nav-link">Accueil</a></li>
+                <li><a href="index.html#tds" class="nav-link active">TDs</a></li>
+                <li><a href="index.html#cours" class="nav-link">Cours</a></li>
+                <li><a href="index.html#projets" class="nav-link">Projets</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Travaux Dirigés</span>
+                <h2 class="section-title">TD2: Processus Organisationnel</h2>
+                <p class="section-description">Requêtes complexes et optimisation</p>
+            </div>
+            <div class="resources">
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                                <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M8 7H16M8 12H16M8 17H12" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3>TD2 SI</h3>
+                        <p class="card-description">Document PDF pour TD2 Processus Organisationnel</p>
+                        <div class="preview-container">
+                            <img src="https://raw.githubusercontent.com/binksterrel/monportfolio/main/image/pdf-icon.png" alt="PDF Preview" class="preview-image">
+                        </div>
+                        <a href="https://raw.githubusercontent.com/binksterrel/monportfolio/main/image/TD2_SI.odt" class="btn btn-small" download="TD2 SI.odt">
+                            <span>Télécharger</span>
+                            <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                                <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                                <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M8 8H16M8 12H16M8 16H12" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3>QuillooSchema</h3>
+                        <p class="card-description">Schéma illustrant les concepts des systèmes d'information</p>
+                        <div class="preview-container">
+                            <img src="https://raw.githubusercontent.com/binksterrel/monportfolio/main/image/QuillooSchema.png" alt="Quilloo Schema Preview" class="preview-image" onclick="openModal('https://raw.githubusercontent.com/binksterrel/monportfolio/main/image/QuillooSchema.png')">
+                        </div>
+                        <a href="https://raw.githubusercontent.com/binksterrel/monportfolio/main/image/QuillooSchema.png" class="btn btn-small" download="QuillooSchema.png">
+                            <span>Télécharger</span>
+                            <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                                <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                                <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M8 8H16M8 12H16M8 16H12" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3>TP Odoo</h3>
+                        <p class="card-description">Travaux pratiques sur le logiciel Odoo pour les processus organisationnels</p>
+                        <div class="preview-container">
+                            <img src="https://raw.githubusercontent.com/binksterrel/monportfolio/main/image/word-icon.png" alt="Word Preview" class="preview-image">
+                        </div>
+                        <a href="https://raw.githubusercontent.com/binksterrel/monportfolio/main/image/TP Odoo.docx" class="btn btn-small" download="TP Odoo.docx">
+                            <span>Télécharger</span>
+                            <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                                <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="info-note">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 16V12M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span>Ajoute tes propres ressources en modifiant le HTML !</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Image Preview -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <footer class="footer">
+        <div class="footer-background">
+            <div class="footer-orb"></div>
+        </div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">
+                        <span class="logo-gradient">Portfolio</span> SI
+                    </h3>
+                    <p>Système d'Information - 2025</p>
+                </div>
+                <nav class="footer-nav">
+                    <div class="footer-nav-group">
+                        <h4>Navigation</h4>
+                        <a href="index.html#accueil">Accueil</a>
+                        <a href="index.html#tds">TDs</a>
+                        <a href="index.html#cours">Cours</a>
+                    </div>
+                    <div class="footer-nav-group">
+                        <h4>Projets</h4>
+                        <a href="index.html#projets">Tous les projets</a>
+                        <a href="index.html#contact">Contact</a>
+                    </div>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">© 2025 Portfolio Système d'Information - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Modal functionality
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            modal.style.display = 'flex';
+            modalImage.src = imageSrc;
+
+            // Gestion des erreurs de chargement d'image
+            modalImage.onerror = function() {
+                modalImage.style.display = 'none';
+                const errorMsg = document.createElement('p');
+                errorMsg.className = 'error-message';
+                errorMsg.textContent = 'Erreur : Impossible de charger l\'image';
+                modal.appendChild(errorMsg);
+            };
+            modalImage.onload = function() {
+                modalImage.style.display = 'block';
+                const existingError = modal.querySelector('.error-message');
+                if (existingError) existingError.remove();
+            };
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
+        // Fermer le modal en cliquant dehors
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        };
+
+        // Gestion des erreurs pour les aperçus
+        document.querySelectorAll('.preview-image').forEach(img => {
+            img.onerror = function() {
+                this.style.display = 'none';
+                const errorMsg = document.createElement('p');
+                errorMsg.className = 'error-message';
+                errorMsg.textContent = 'Erreur : Impossible de charger l\'aperçu';
+                this.parentElement.appendChild(errorMsg);
+            };
+        });
+    </script>
+</body>
+</html>
